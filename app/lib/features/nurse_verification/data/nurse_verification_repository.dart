@@ -38,6 +38,13 @@ class NurseVerificationRepository {
     DateTime? expiryDate,
   }) async {
     final userId = supabase.auth.currentUser!.id;
+
+    // A nurse can reach this screen before ever saving their profile (Module
+    // 4), in which case no `nurses` row exists yet and the FK on
+    // nurse_documents.nurse_id would reject the insert. Create a bare row
+    // (defaults only) if missing, without touching one that already exists.
+    await supabase.from('nurses').upsert({'id': userId}, onConflict: 'id', ignoreDuplicates: true);
+
     final timestamp = DateTime.now().millisecondsSinceEpoch;
     final path = '$userId/${docTypeToDb(docType)}_$timestamp.$fileExtension';
 

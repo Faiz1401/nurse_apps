@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/application/auth_providers.dart';
+import '../../features/nurse_availability/presentation/nurse_availability_screen.dart';
 import '../../features/nurse_profile/presentation/nurse_profile_screen.dart';
 import '../../features/nurse_verification/presentation/nurse_documents_screen.dart';
 
@@ -24,6 +25,7 @@ class _NurseShellState extends ConsumerState<NurseShell> {
       const _DashboardTab(),
       const NurseProfileScreen(),
       const NurseDocumentsScreen(),
+      const NurseAvailabilityScreen(),
     ];
 
     return Scaffold(
@@ -37,6 +39,10 @@ class _NurseShellState extends ConsumerState<NurseShell> {
               icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
           NavigationDestination(
               icon: Icon(Icons.verified_outlined), selectedIcon: Icon(Icons.verified), label: 'Verification'),
+          NavigationDestination(
+              icon: Icon(Icons.calendar_month_outlined),
+              selectedIcon: Icon(Icons.calendar_month),
+              label: 'Availability'),
         ],
       ),
     );

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../features/auth/application/auth_providers.dart';
 import '../../features/client_profile/presentation/profile_screen.dart';
+import '../../features/nurse_search/presentation/nurse_search_screen.dart';
 import '../../features/patients/presentation/patients_list_screen.dart';
 import '../../features/services_catalog/presentation/services_browse_screen.dart';
 
@@ -24,6 +25,7 @@ class _PatientShellState extends ConsumerState<PatientShell> {
     final pages = [
       const _DashboardTab(),
       const ServicesBrowseScreen(),
+      const NurseSearchScreen(),
       const PatientsListScreen(),
       const ProfileScreen(),
     ];
@@ -39,6 +41,8 @@ class _PatientShellState extends ConsumerState<PatientShell> {
               icon: Icon(Icons.medical_services_outlined),
               selectedIcon: Icon(Icons.medical_services),
               label: 'Services'),
+          NavigationDestination(
+              icon: Icon(Icons.search_outlined), selectedIcon: Icon(Icons.search), label: 'Find Nurses'),
           NavigationDestination(
               icon: Icon(Icons.people_outline), selectedIcon: Icon(Icons.people), label: 'My Patients'),
           NavigationDestination(
